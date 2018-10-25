@@ -1,0 +1,10 @@
+div{
+    margin: 20px;
+}
+.form-control{
+    width: 20%;
+    display:inline-block;
+}
+.hidden{
+    display: none;
+}
