@@ -2,50 +2,37 @@
 task1: Даны два селекта. В первом находятся страны, во втором - города. Сделайте так, чтобы когда выбирается определенная страна - в другом селекте появлялись города этой страны. В абзац ниже пишите выбранную страну и город через запятую.
 */
 (function () {
+    let cities = {
+        'USA': ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'],
+        'Germany': ['Berlin', 'Hamburg', 'Munich', 'Cologne', 'Stuttgard'],
+        'India': ['Kolkata', 'Chennai', 'Bangalore', 'Hyderabad', 'Ahmedabad']
+    }
     let select1 = document.querySelector('.select1');
     let select2 = document.querySelector('.select2');
-    let selectedCountry = document.querySelectorAll('.country');
-    let citiesOfCountry = document.querySelectorAll('.city');
-    let country;
+    const countries = Object.keys(cities);
+    const citiesArr = Object.values(cities);
+    const all = Object.entries(cities);
+    console.log(all);
+
+    for(var i=0; i<countries.length; i++){
+        select1.innerHTML += select1.innerHTML = '<option class="country" value="' + countries[i] + '">' + countries[i] + '</option>';
+    }
+
+    for(var i=0; i<citiesArr[0].length; i++){
+        select2.innerHTML += select2.innerHTML = '<option class="city" value="">' + citiesArr[0][i] + '</option>';
+    }
+
     select1.addEventListener('change', function (){
-        country = (select1.options[ select1.selectedIndex ].value);
-        for (var j=0; j<citiesOfCountry.length; j++){
-            if (citiesOfCountry[j].value == country) {
-                select2.options[ select2.selectedIndex ].value == citiesOfCountry[j].value;
-                citiesOfCountry[j].hidden = false;
-            }else {
-                citiesOfCountry[j].hidden = true;
-            }
-    }});
+        let activeCountry =  select1.options[ select1.selectedIndex ].value;
+        select2.innerHTML = "";
+        for(var j=0; j<cities[activeCountry].length; j++){
+            select2.innerHTML += select2.innerHTML = '<option class="city" value="">' + cities[activeCountry][j] + '</option>';
+        }
+    });
 })();
 
-/*var cityArr = {
-	'aus': ['Мельбурн', 'Сидней', 'Аделаида', 'Брисбен', 'Хобарт'],
-	'jap': ['Токио', 'Киото', 'Осака', 'Иокогама'],
-	'sar': ['Кейптаун', 'Йоханесбург'],
-}
 
-var prime_select = document.getElementById('country');
-prime_select.addEventListener('change', func);
-prime_select.addEventListener('change', toParagraph);
-
-var city_select = document.getElementById('cities');
-city_select.addEventListener('change', toParagraph);
-
-function func(){
-	city_select.innerHTML = '';
-	var selected_country = prime_select.value;
-	for (var i = 0; i < cityArr[selected_country].length; i++) {
-		var new_option = document.createElement('option');
-		new_option.innerHTML = cityArr[selected_country][i];
-		city_select.appendChild(new_option);
-	}
-}
-
-var parag = document.querySelector('p');
-function toParagraph() {
-	parag.innerHTML = '';
-	parag.innerHTML = prime_select.options[prime_select.selectedIndex].text + ', '
-	+city_select.options[city_select.selectedIndex].text;
-}
+/*
+task2: Сделайте селекты день, мес, год. Сделайте так, чтобы не корректную дату нельзя было выбрать (например, 30 февраля нельзя, а 30 марта можно или 29 февраля можно, но только в високосный год).
 */
+
