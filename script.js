@@ -124,7 +124,9 @@ $( document ).ready(function() {
         let rows = $('.input-row').val();
         let cols = $('.input-col').val();
         let table = $('#table');
+
         table.children().remove();
+
         for (var r = 0; r < rows; r++) {
         table.append('<tr></tr>');
         console.log(document.getElementsByTagName('tr'));
@@ -132,5 +134,24 @@ $( document ).ready(function() {
         table.children().last().append('<td></td>');
         };
         };
-    })
-})
+    });
+});
+/*
+task5: Дан список и кнопка. По нажатию на кнопку посортируйте пункты списка по возрастанию
+*/
+$( document ).ready(function() {
+    $('.btn3').on('click', function (){
+        let list = $('#list');
+        let numbers = [];
+
+        $('.number').each(function(){
+            numbers.push($(this).text());
+        });
+        list.children().remove();
+        numbers.sort(function(a,b){return a-b});
+        $.each(numbers, function(index, value){
+            list.append('<li>' + value + '</li>');
+        })
+        $('.btn3').off('click');
+    });
+});
