@@ -69,7 +69,6 @@ $( document ).ready(function() {
 
     months.addEventListener('change', changeDays);
     years.addEventListener('change', changeDays);
-    
 
     function changeDays () {
         activeMonth =  months.options[ months.selectedIndex ].value;
@@ -85,4 +84,34 @@ $( document ).ready(function() {
             }
         }
 });
+/*
+task3. Реализуйте калькулятор валют. Есть два селекта - селект с исходной валюты, селект с той валютой, в которую мы хотим перевести деньги, инпут, в который вводится сумма для обмена. Курсы валют храните в массиве. Сделайте так, чтобы в селектах нельзя было выбрать две одинаковых валюты.
+*/
 
+$( document ).ready(function() {
+    vals = {
+        'PLN': 1.00,
+        'USD': 3.80,
+        'EUR': 4.34
+    };
+
+    $.each(vals, function( index, value ) {
+        $('.val1').append('<option class="val" value="' + index + '">' + index + '</option>');
+        $('.val2').append('<option class="val" value="' + index + '">' + index + '</option>');
+    });
+    $('.btn1').on('click', exchange);
+
+    function exchange(){
+        let val1 = document.querySelector('.val1').value;
+        let val2 = document.querySelector('.val2').value;
+        let amount = $('.input1').val();
+        let result = document.querySelector('#result');
+        if(val1 !== val2) {
+            console.log('ok');
+            let answer = vals[val1] / vals[val2] * amount;
+            result.innerHTML = answer;
+        } else {
+            alert('Choose right currency!')
+        }
+    }
+});
