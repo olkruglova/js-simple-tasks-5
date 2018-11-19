@@ -115,3 +115,22 @@ $( document ).ready(function() {
         }
     }
 });
+
+/*
+task4. Реализуйте генератор таблиц, ширина и высота таблиц задается в двух инпутах (например, таблица 5 на 10 ячеек)
+*/
+$( document ).ready(function() {
+    $('.btn2').on('click', function (){
+        let rows = $('.input-row').val();
+        let cols = $('.input-col').val();
+        let table = $('#table');
+        table.children().remove();
+        for (var r = 0; r < rows; r++) {
+        table.append('<tr></tr>');
+        console.log(document.getElementsByTagName('tr'));
+        for (var c = 0; c < cols; c++) {
+        table.children().last().append('<td></td>');
+        };
+        };
+    })
+})
