@@ -155,3 +155,14 @@ $( document ).ready(function() {
         $('.btn3').off('click');
     });
 });
+/*
+task6: Дан ряд ссылок. Сделайте так, чтобы по нажатию на ссылку она становилась с красным фоном. По нажатию на другую ссылку выделение первой ссылки снимается и выделяется та, на которую мы нажали. В абзац ниже пишите текст активной ссылки
+*/
+$( document ).ready(function() {
+    $('.link').on('click', function (){
+        $('.link').css('background-color', 'white');
+        $(this).css('background-color', 'red');
+        let href = $(this).attr('href');
+        $('.link-name').html('<span>' + href + '</span>')
+    });
+});
